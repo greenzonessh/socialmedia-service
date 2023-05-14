@@ -47,7 +47,7 @@ class UserAuthController extends Controller
                     $response['token'] = $token;
                     return response()->json($response, 200);
                 } catch (\Exception $e) {
-                    $user->delete();
+                    $user->forceDelete();
 
                     $response['message'] = 'failed';
                     $response['error'] = $e->getMessage();

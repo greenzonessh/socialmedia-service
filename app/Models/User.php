@@ -30,13 +30,13 @@ class User extends Authenticatable
     public static $rules=[
         'create' => [
             'username' => 'required|min:3|max:12|unique:users',
-            'email' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
         ],
         'update' => [
             'id' => 'required|exists:users,id',
             'username' => 'required|min:3|max:12|unique:users',
-            'email' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
         ]
     ];
@@ -62,6 +62,6 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(Profile::class,'profile_id','id');
+        return $this->hasOne(Profile::class,'user_id','id');
     }
 }
